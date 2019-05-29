@@ -72,6 +72,25 @@ Humanoid.prototype.greet = function () {
   * Instances of CharacterStats should have all of the same properties as GameObject.
 */
 
+// stretch new objects
+function Villain(villianDetails) {
+  Humanoid.call(this, villianDetails);
+
+  Villain.prototype.move = function (characterName) {
+    return (characterName.healthPoints - 5);
+  }
+
+};
+
+function Hero(heroDetails) {
+  Villain.call(this, heroDetails);
+
+  Hero.prototype.ultimate = function (characterName) {
+    return characterName.healthPoints - 30;
+  }
+
+};
+
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
 
@@ -125,6 +144,42 @@ Humanoid.prototype.greet = function () {
     language: 'Elvish',
   });
 
+
+//Stretch Objects
+const hulk = new Hero({
+  createdAt: new Date(),
+  dimensions: {
+    length: 3,
+    width: 4,
+    height: 7,
+  },
+  healthPoints: 50,
+  name: 'Bruce Banner',
+  team: 'The Avengers',
+  weapons: [
+    'Thor\'s Hammer',
+    'Infinity Gauntlet',
+  ],
+  language: 'English',
+});
+
+const thanos = new Villain({
+  createdAt: new Date(),
+  dimensions: {
+    length: 3,
+    width: 4,
+    height: 8,
+  },
+  healthPoints: 30,
+  name: 'Thanos',
+  team: 'The Universe',
+  weapons: [
+    'The Gauntlet',
+    'Infinity Stones',
+  ],
+  language: 'N/A',
+});
+
   console.log(mage.createdAt); // Today's date
   console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
   console.log(swordsman.healthPoints); // 15
@@ -135,6 +190,12 @@ Humanoid.prototype.greet = function () {
   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
   console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
+
+// stretch console
+console.log(hulk.healthPoints);
+console.log(thanos.healthPoints);
+console.log(thanos.move(hulk));
+console.log(hulk.ultimate(thanos));
 
 
   // Stretch task: 
